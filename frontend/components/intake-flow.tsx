@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useState, type ReactNode } from "react";
 import {
   getFollowUpQuestion,
@@ -354,12 +353,13 @@ function Summary({
         >
           Change my answers
         </button>
-        <Link
-          href="/"
+        {/* No plan page yet: this will lead to the generated production plan. */}
+        <button
+          type="button"
           className="rounded-lg bg-ink px-7 py-3.5 text-[16px] font-semibold text-sun hover:bg-ink/90"
         >
-          Start another product
-        </Link>
+          Next
+        </button>
       </div>
     </div>
   );
