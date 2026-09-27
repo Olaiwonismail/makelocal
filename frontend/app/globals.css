@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-sun: #f5c21b;
+  --color-ink: #1b1813;
+  --color-cream: #fff9e7;
+  --color-muted: #5b5446;
+  --color-faint: #8d8676;
+  --font-sans: var(--font-archivo);
+  --font-display: var(--font-bricolage);
+}
+
+body {
+  background: var(--color-sun);
+  color: var(--color-ink);
+}
+
+.font-display {
+  font-family: var(--font-display);
+  font-variation-settings: "wdth" 75, "opsz" 96;
+  letter-spacing: -0.01em;
+}
