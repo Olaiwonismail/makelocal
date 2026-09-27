@@ -40,3 +40,8 @@ def test_empty_product_is_rejected(keyless_client):
     r = keyless_client.post("/projects", json={"product": "  "})
     assert r.status_code == 400
     assert r.json()["code"] == "empty"
+
+
+def test_any_tomato_product_uses_the_research(keyless_client):
+    for text in ("Tomato", "tomatoes", "Tomato paste tin"):
+        assert keyless_client.post("/projects", json={"product": text}).json()["demo"] is True

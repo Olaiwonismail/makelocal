@@ -1,5 +1,5 @@
 {
-  "match": ["tomato paste", "tomato puree", "tomato concentrate"],
+  "match": ["tomato"],
   "product": "Tomato paste, 70g sachet, double concentrate",
   "answers": {
     "quantity": "",
