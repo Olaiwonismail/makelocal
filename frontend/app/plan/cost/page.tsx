@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { ReportShell } from "@/components/report-shell";
+import { NextLink, ReportShell } from "@/components/report-shell";
 import { getCostComparison, total, type CostLine } from "@/lib/cost";
 
 export const metadata: Metadata = {
@@ -87,6 +87,12 @@ export default async function CostPage({ searchParams }: PageProps<"/plan/cost">
             Figures are sample estimates, not supplier quotes.
           </p>
         </section>
+
+        <div className="mt-10 flex justify-end">
+          <NextLink href={`/plan/suppliers${product ? `?${new URLSearchParams({ product })}` : ""}`}>
+            Next
+          </NextLink>
+        </div>
       </div>
     </ReportShell>
   );

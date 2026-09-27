@@ -13,6 +13,11 @@ const sections = [
     title: "Feasibility & Cost",
     description: "Local production vs import cost",
   },
+  {
+    href: "/plan/suppliers",
+    title: "Local Supply Chain",
+    description: "Suppliers, workshops and services near you",
+  },
 ] as const;
 
 export type ReportSection = (typeof sections)[number]["href"];
@@ -62,10 +67,10 @@ export function ReportShell({
                     aria-current={active ? "page" : undefined}
                     className={`block h-full px-4 py-4 md:px-7 md:py-5 ${active ? "bg-cream" : "hover:bg-cream/50"}`}
                   >
-                    <span className="font-display block text-[22px] leading-tight font-bold md:text-[28px]">
+                    <span className="font-display block text-[19px] leading-tight font-bold md:text-[28px]">
                       {s.title}
                     </span>
-                    <span className="mt-1 block text-[13px] leading-snug text-muted md:text-[14px]">
+                    <span className="mt-1 hidden text-[14px] leading-snug text-muted md:block">
                       {s.description}
                     </span>
                   </Link>
