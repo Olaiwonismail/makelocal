@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useState, type ReactNode } from "react";
 import {
   getFollowUpQuestion,
@@ -317,6 +318,7 @@ function Summary({
   followUpQuestion: string;
   onEdit: () => void;
 }) {
+  const router = useRouter();
   const quantity = answers.exactQuantity
     ? Number(answers.exactQuantity).toLocaleString("en")
     : answers.quantity;
@@ -335,7 +337,7 @@ function Summary({
         Got it{product ? `: ${product}` : ""}
       </h2>
       <p className="mt-2 text-[16px] text-ink/85">
-        Here&apos;s what we&apos;ll plan around. Production plans aren&apos;t wired up yet.
+        Here&apos;s what we&apos;ll plan around.
       </p>
       <dl className="mt-7 grid gap-x-6 gap-y-3 text-[16px] sm:grid-cols-[220px_1fr]">
         {rows.map(([term, value]) => (
@@ -353,9 +355,11 @@ function Summary({
         >
           Change my answers
         </button>
-        {/* No plan page yet: this will lead to the generated production plan. */}
         <button
           type="button"
+          onClick={() =>
+            router.push(product ? `/plan/analysis?${new URLSearchParams({ product })}` : "/plan/analysis")
+          }
           className="rounded-lg bg-ink px-7 py-3.5 text-[16px] font-semibold text-sun hover:bg-ink/90"
         >
           Next

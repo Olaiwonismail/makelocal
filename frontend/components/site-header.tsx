@@ -1,15 +1,23 @@
 import Link from "next/link";
+import type { ReactNode } from "react";
 
 const navLinks = ["How it works", "Examples", "For workshops", "For suppliers"];
 
-export function SiteHeader({ minimal = false }: { minimal?: boolean }) {
+export function SiteHeader({
+  minimal = false,
+  actions,
+}: {
+  minimal?: boolean;
+  actions?: ReactNode;
+}) {
   if (minimal) {
     return (
       <header className="border-b-[1.5px] border-ink">
-        <div className="flex h-20 items-center px-4 sm:px-14">
-          <Link href="/" className="font-display text-[34px] font-extrabold leading-none">
+        <div className="flex h-20 items-center justify-between gap-4 px-4 sm:px-14">
+          <Link href="/" className="font-display text-[28px] font-extrabold leading-none sm:text-[34px]">
             MakeLocal
           </Link>
+          {actions && <div className="flex items-center gap-3 sm:gap-7">{actions}</div>}
         </div>
       </header>
     );
