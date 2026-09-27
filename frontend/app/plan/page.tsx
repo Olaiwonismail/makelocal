@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { IntakeFlow } from "@/components/intake-flow";
+import { projectParam } from "@/components/report-shell";
 import { SiteHeader } from "@/components/site-header";
 
 export const metadata: Metadata = {
@@ -7,13 +8,12 @@ export const metadata: Metadata = {
 };
 
 export default async function PlanPage({ searchParams }: PageProps<"/plan">) {
-  const { product } = await searchParams;
-
+  const projectId = await projectParam(searchParams);
   return (
     <>
       <SiteHeader minimal />
       <main className="flex-1">
-        <IntakeFlow product={typeof product === "string" ? product.trim() : ""} />
+        <IntakeFlow projectId={projectId} />
       </main>
     </>
   );

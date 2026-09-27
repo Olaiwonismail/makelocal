@@ -1,4 +1,4 @@
-import type { ProductAnalysis } from "@/lib/analysis";
+import type { ProductAnalysis } from "@/lib/types";
 
 // Branch width and gap are fixed so the horizontal connector can reach from one
 // branch's centre to the next: each branch draws its share of the bar, spilling

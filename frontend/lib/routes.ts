@@ -1,3 +1,3 @@
-export function withProduct(path: string, product: string) {
-  return product ? `${path}?${new URLSearchParams({ product })}` : path;
+export function withProject(path: string, projectId: string) {
+  return `${path}?${new URLSearchParams({ project: projectId })}`;
 }

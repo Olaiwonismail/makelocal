@@ -1,0 +1,421 @@
+{
+  "match": ["tomato paste", "tomato puree", "tomato concentrate"],
+  "product": "Tomato paste, 70g sachet, double concentrate",
+  "answers": {
+    "quantity": "",
+    "exactQuantity": 20000,
+    "sellIn": "Across my country",
+    "makeIn": "Kano, Nigeria",
+    "match": "Similar is fine",
+    "followUp": "70g sachet",
+    "followUpText": ""
+  },
+  "followUp": {
+    "question": "Sachet or tin?",
+    "hint": "The filling machine and shelf life differ completely, and sachets dominate the mass market.",
+    "options": ["70g sachet", "210g tin", "400g tin", "Bulk aseptic drum"]
+  },
+  "analysis": {
+    "product": "Tomato paste, 70g sachet",
+    "summary": "Double concentrate (28 to 30 Brix) tomato paste in 70g form-fill-seal sachets, made from fresh field tomatoes.",
+    "branches": [
+      {
+        "title": "Materials",
+        "items": ["Fresh tomatoes", "Salt and citric acid", "Sachet laminate film", "Cartons and labels"]
+      },
+      {
+        "title": "Manufacturing",
+        "items": [
+          "Wash and sort",
+          "Crush and hot break",
+          "Pulp and refine",
+          "Evaporate to 28 Brix",
+          "Sterilise",
+          "Fill and seal sachets",
+          "Pasteurise and pack"
+        ]
+      },
+      {
+        "title": "Equipment",
+        "items": [
+          "Bubble washer and sorter",
+          "Crusher and pulper",
+          "Tubular preheater",
+          "Vacuum evaporator",
+          "UHT steriliser",
+          "Sachet filling machine",
+          "Pasteurising bath",
+          "Steam boiler",
+          "Tanks, pumps and CIP"
+        ]
+      }
+    ],
+    "materials": [
+      {
+        "name": "Fresh tomatoes",
+        "role": "Primary material. Ripe field tomatoes, 4 to 6 Brix.",
+        "perUnit": "0.39 kg per sachet",
+        "perBatch": "7.8 tonnes per 20,000 sachets",
+        "source": "Kadawa irrigation scheme, Yankaba and Kwanar Gafan markets (Kano); also Jos, Kaduna, Katsina, Benue"
+      },
+      {
+        "name": "Salt and citric acid",
+        "role": "Additives",
+        "perUnit": "About 2 g per sachet combined",
+        "perBatch": "28 kg salt, 12 kg citric acid",
+        "source": "Local chemical dealers, Kano or Lagos"
+      },
+      {
+        "name": "Sachet laminate film",
+        "role": "Packaging. Printed BOPP/PE laminate roll stock for form-fill-seal.",
+        "perUnit": "1 per sachet",
+        "perBatch": "20,500 sachets of film",
+        "source": "Lagos packaging converters (Agbara, Ikeja industrial estates)"
+      },
+      {
+        "name": "Cartons and labels",
+        "role": "Secondary packaging. 50 sachets per carton.",
+        "perUnit": "1 carton per 50 sachets",
+        "perBatch": "400 cartons",
+        "source": "Lagos packaging converters"
+      }
+    ],
+    "process": [
+      { "title": "Wash and sort", "detail": "Air bubble and water pressure clean the tomatoes. Remove unripe and rotten fruit." },
+      {
+        "title": "Crush and break",
+        "detail": "Hot break heats pulp to 85 to 90°C for 10 to 15 minutes; cold break to 55 to 60°C. Both stop pectinase. Hot break gives higher viscosity and a stronger red; cold break gives higher yield."
+      },
+      { "title": "Pulp and refine", "detail": "A double-stage pulper reaches about 90% pulp yield, separating skins and seeds." },
+      {
+        "title": "Evaporate",
+        "detail": "The most energy-intensive step. Juice at 5% solids becomes 28 to 36% concentrate, under vacuum well below 100°C."
+      },
+      { "title": "Sterilise", "detail": "Tube-in-tube steriliser, UHT at 108 to 110°C." },
+      {
+        "title": "Fill and seal sachets",
+        "detail": "The pouch machine codes, forms, meters, fills, seals, counts and cuts automatically."
+      },
+      { "title": "Pasteurise sachets", "detail": "Pasteurise in 80°C water, then cool." },
+      { "title": "Code, carton, palletise", "detail": "50 sachets per carton." }
+    ],
+    "equipment": [
+      { "name": "Air bubble washer and sorting conveyor", "purpose": "Clean and grade intake", "costUsdLow": 6000, "costUsdHigh": 10000 },
+      { "name": "Crusher and double-stage pulper/finisher", "purpose": "Separate skin and seed", "costUsdLow": 8000, "costUsdHigh": 14000 },
+      { "name": "Tubular preheater", "purpose": "Hot or cold break", "costUsdLow": 5000, "costUsdHigh": 9000 },
+      { "name": "Forced-circulation vacuum evaporator", "purpose": "Raise to 28 to 30 Brix", "costUsdLow": 25000, "costUsdHigh": 45000 },
+      { "name": "Tube-in-tube UHT steriliser", "purpose": "108 to 110°C", "costUsdLow": 10000, "costUsdHigh": 18000 },
+      { "name": "Sachet form-fill-seal machine", "purpose": "70g packs", "costUsdLow": 8000, "costUsdHigh": 15000 },
+      { "name": "Pasteurising bath and cooling", "purpose": "80°C water bath", "costUsdLow": 3000, "costUsdHigh": 6000 },
+      { "name": "Steam boiler and water treatment", "purpose": "Utilities", "costUsdLow": 8000, "costUsdHigh": 15000 },
+      { "name": "Tanks, screw pumps, CIP", "purpose": "Transfer and cleaning", "costUsdLow": 6000, "costUsdHigh": 12000 }
+    ],
+    "context": [
+      "Nigeria is the 14th largest tomato producer in the world, second in Africa, and grows about 65% of West Africa's tomatoes.",
+      "It still imports about 150,000 tonnes of tomato paste concentrate a year, worth about $170 million. Other estimates put it at 300,000 tonnes and $360 million, mostly from China.",
+      "Of roughly 1.5 million tonnes of tomatoes grown a year, around 900,000 tonnes rot for lack of storage, processing and transport.",
+      "A small line costs $20,000 to $100,000 and processes 200 to 500 kg of fresh tomatoes an hour. At ₦1,390/$, an $80,000 line is about ₦111m FOB, roughly ₦145m landed and installed.",
+      "Grades: 28 to 30 Brix (double concentrate) is the retail standard. 36 to 38 Brix (triple) is for industrial buyers and export."
+    ],
+    "sources": [
+      { "title": "FAO tomato paste processing handbook (5 to 7 kg fresh per kg paste)" },
+      { "title": "Tomato line supplier price ranges (not quotes)" }
+    ]
+  },
+  "cost": {
+    "product": "tomato paste",
+    "unit": "sachet",
+    "location": "Kano",
+    "currency": "NGN",
+    "units": 20000,
+    "local": [
+      {
+        "label": "Materials",
+        "perUnit": 73,
+        "basis": "Fresh tomatoes ₦59 (0.39 kg at ₦150/kg in season), salt and citric acid ₦2, laminate film ₦7, carton and label ₦5",
+        "kind": "estimate"
+      },
+      { "label": "Labour", "perUnit": 4, "basis": "Minimum wage ₦70,000/month spread over output", "kind": "estimate" },
+      {
+        "label": "Machine / process",
+        "perUnit": 32,
+        "basis": "Energy and depreciation. Industrial power ₦100 to ₦230/kWh; Band A ₦209.50/kWh before VAT",
+        "kind": "estimate"
+      },
+      { "label": "Transport", "perUnit": 8, "basis": "Kano farms to plant and on to wholesale", "kind": "estimate" }
+    ],
+    "imported": [
+      { "label": "Product cost (FOB China)", "perUnit": 62, "basis": "Chinese export price at ₦1,390/$", "kind": "estimate" },
+      { "label": "Shipping and insurance", "perUnit": 11, "basis": "Estimate", "kind": "estimate" },
+      { "label": "Duties", "perUnit": 37, "basis": "Tomato paste carries a 50% supplemental tariff", "kind": "sourced" },
+      { "label": "Clearing, VAT, demurrage, inland transport", "perUnit": 20, "basis": "Estimate", "kind": "estimate" }
+    ],
+    "verdict": "Local production is about 10% cheaper, but only inside the February to May harvest window with contracted farmgate supply. Off season, tomatoes reach ₦3,000/kg and local production costs three times the landed import price. At ₦145m installed and one 90-day campaign a year, break-even is roughly 11 million sachets: years, not months.",
+    "caveats": [
+      "The tomato campaign lasts 60 to 90 days in most regions. The real limit on the line is how many tomatoes you can source every day of it.",
+      "Erisco Foods opened a tomato paste plant in February 2016 and closed it that November. Dangote's plant shut in 2017, reopened in 2019 and only became fully operational in February 2020.",
+      "Imported tomato paste is banned by the federal government and NAFDAC is enforcing it, though local makers say imports still flood the market. If enforcement holds, the import column becomes theoretical.",
+      "Equipment prices are supplier ranges, not quotes."
+    ],
+    "references": [
+      { "label": "Retail, 70g sachet", "value": "₦100 to ₦120", "source": "Tasty Tom from ₦100, Gino ₦120" },
+      { "label": "Wholesale carton, 70g × 50", "value": "₦5,500 to ₦6,700", "source": "Gino ₦5,500, De Rica ₦6,000, Vitali ₦6,700" },
+      { "label": "Tomatoes in season", "value": "₦4,000 small basket", "source": "Kano, September 2026, down 60% from ₦10,000" },
+      { "label": "Tomatoes off season", "value": "₦150,000 to ₦170,000 basket", "source": "Abuja wholesale, June 2026" },
+      { "label": "Exchange rate", "value": "₦1,327.78 / $1 (NFEM)", "source": "About ₦1,389 parallel, 23 September 2026" },
+      { "label": "Minimum wage", "value": "₦70,000 / month", "source": "Federal minimum wage" },
+      { "label": "Industrial electricity", "value": "₦100 to ₦230 / kWh", "source": "Band A ₦209.50/kWh before VAT" },
+      { "label": "NAFDAC food registration", "value": "₦50,000", "source": "NAFDAC" }
+    ],
+    "sources": []
+  },
+  "suppliers": {
+    "product": "tomato paste",
+    "origin": "Kano",
+    "currency": "NGN",
+    "groups": [
+      {
+        "name": "Materials",
+        "noun": "source",
+        "description": "Tomatoes are the whole game: spoilage and supply, not price, decide whether the line runs. Film and cartons come from Lagos.",
+        "suppliers": [
+          {
+            "name": "NATPAN",
+            "kind": "Tomato growers association",
+            "location": "Kano",
+            "capabilities": ["Contract farming", "Growers of every size", "Processors and marketers"],
+            "note": "National Tomato Growers, Processors and Marketers Association of Nigeria, the umbrella body for the tomato value chain. Your route to contract farming."
+          },
+          {
+            "name": "Kadawa irrigation scheme",
+            "kind": "Commercial growers",
+            "location": "Kadawa, Kano State",
+            "capabilities": ["Irrigated tomatoes", "Dense commercial growers"],
+            "note": "Where the Dangote tomato factory, able to process 120 tonnes of fresh tomatoes a day, is sited."
+          },
+          {
+            "name": "Yankaba market",
+            "kind": "Wholesale tomato market",
+            "location": "Kano",
+            "capabilities": ["Wholesale intake", "Basket sales"],
+            "note": "Wholesale intake point in Kano.",
+            "price": { "label": "Small basket, in season", "amount": 4000, "basis": "Kano, September 2026, down from ₦10,000" }
+          },
+          {
+            "name": "Kwanar Gafan tomato market",
+            "kind": "Wholesale tomato market",
+            "location": "Kano State",
+            "capabilities": ["Wholesale intake", "Direct from farms"],
+            "note": "Major tomato wholesale point in Kano State."
+          },
+          {
+            "name": "Mile 12 market",
+            "kind": "Wholesale food market",
+            "location": "Lagos",
+            "capabilities": ["40 kg raffia baskets", "Southern wholesale"],
+            "note": "Southern wholesale hub. Useful off-season comparison, too far for daily intake from Kano."
+          },
+          {
+            "name": "Lagos packaging converters",
+            "kind": "Laminate film and cartons",
+            "location": "Agbara and Ikeja industrial estates, Lagos",
+            "capabilities": ["Printed BOPP/PE laminate", "Form-fill-seal roll stock", "Cartons and labels"],
+            "note": "Where sachet film and cartons are made. Ask for NAFDAC-compliant print."
+          }
+        ]
+      },
+      {
+        "name": "Workshops",
+        "noun": "processor",
+        "description": "Who can process for you, train you, or sell you the line.",
+        "suppliers": [
+          {
+            "name": "FIIRO",
+            "kind": "Federal research institute",
+            "location": "Oshodi, Lagos",
+            "capabilities": ["Rotary pulper and siever", "Pre-heating and mixing", "Sachet form-fill-seal"],
+            "note": "Federal Institute of Industrial Research has an installed tomato paste system filling foil sachets. The closest thing to toll processing, plus technology transfer and training."
+          },
+          {
+            "name": "Tomato Jos",
+            "kind": "Tomato processor",
+            "location": "Nigeria",
+            "capabilities": ["Operating processor", "Farmer network"],
+            "note": "Operating Nigerian processor. CEO Mira Mehta is NATPAN's delegate on the World Processing Tomato Council board."
+          },
+          {
+            "name": "Erisco Foods",
+            "kind": "Food manufacturer",
+            "location": "Lagos",
+            "capabilities": ["Tomato paste brand", "Local manufacturing"],
+            "note": "Established local manufacturer. Its 2016 plant closed within the year, a lesson in supply risk."
+          },
+          {
+            "name": "Alvan Blanch",
+            "kind": "Equipment supplier",
+            "location": "United Kingdom",
+            "capabilities": ["Processing equipment", "Nigerian installations"],
+            "note": "UK equipment maker with installations in Nigeria."
+          },
+          {
+            "name": "Shanghai Keyfood",
+            "kind": "Turnkey line supplier",
+            "location": "China",
+            "capabilities": ["Complete tomato paste lines"],
+            "note": "Chinese turnkey supplier. Prices are ranges until quoted."
+          },
+          {
+            "name": "DT Food Machine",
+            "kind": "Turnkey line supplier",
+            "location": "China",
+            "capabilities": ["Complete tomato paste lines"],
+            "note": "Chinese turnkey supplier."
+          },
+          {
+            "name": "Huafood",
+            "kind": "Turnkey line supplier",
+            "location": "China",
+            "capabilities": ["Complete tomato paste lines"],
+            "note": "Chinese turnkey supplier."
+          },
+          {
+            "name": "Vortech Global",
+            "kind": "Turnkey line supplier",
+            "location": "China",
+            "capabilities": ["Complete tomato paste lines"],
+            "note": "Chinese turnkey supplier."
+          }
+        ]
+      },
+      {
+        "name": "Services",
+        "noun": "service",
+        "description": "Registration, cold chain and getting sachets to market.",
+        "suppliers": [
+          {
+            "name": "NAFDAC registration",
+            "kind": "Regulator",
+            "location": "Nigeria",
+            "capabilities": ["Product registration", "Facility inspection"],
+            "note": "Required before sale. Runs in parallel with equipment lead time.",
+            "price": { "label": "Food product registration", "amount": 50000, "basis": "NAFDAC fee" }
+          },
+          {
+            "name": "Cold chain or same-day haulage",
+            "kind": "Transport",
+            "location": "Kano farms to plant",
+            "capabilities": ["Same-day farm pickup", "Cooled transport"],
+            "note": "Spoilage is the killer. Tomatoes need to reach the line the day they are picked."
+          },
+          {
+            "name": "Wholesale distribution",
+            "kind": "Distribution",
+            "location": "Lagos, Onitsha, Aba",
+            "capabilities": ["Wholesale markets", "Carton distribution"],
+            "note": "Routes to the big southern wholesale markets."
+          }
+        ]
+      }
+    ],
+    "sources": []
+  },
+  "production": {
+    "product": "tomato paste",
+    "batch": 20000,
+    "unit": "sachet",
+    "flow": [
+      { "label": "Buy tomatoes" },
+      { "label": "Wash and sort" },
+      { "label": "Crush and hot break" },
+      { "label": "Pulp and refine" },
+      { "label": "Evaporate to 28 Brix", "key": true },
+      { "label": "Sterilise" },
+      { "label": "Fill sachets" },
+      { "label": "Pasteurise and pack" }
+    ],
+    "stats": [
+      { "label": "Suggested batch", "value": "20,000 sachets", "note": "1,400 kg paste from 7.8 t fresh tomatoes" },
+      { "label": "Production time", "value": "2 shifts", "note": "About 16 hours at 500 kg/h fresh intake" },
+      { "label": "First batch ready", "value": "14 weeks", "note": "Equipment lead time is the long pole" },
+      { "label": "Campaign window", "value": "60 to 90 days", "note": "February to May" }
+    ],
+    "materials": [
+      { "item": "Fresh tomatoes", "quantity": "7,840 kg" },
+      { "item": "Salt", "quantity": "28 kg" },
+      { "item": "Citric acid", "quantity": "12 kg" },
+      { "item": "Sachet laminate film", "quantity": "20,500 sachets" },
+      { "item": "Cartons", "quantity": "400" }
+    ],
+    "machines": [
+      { "item": "Air bubble washer and sorter", "source": "Buy, $6k to $10k" },
+      { "item": "Crusher and double-stage pulper", "source": "Buy, $8k to $14k" },
+      { "item": "Tubular preheater", "source": "Buy, $5k to $9k" },
+      { "item": "Forced-circulation vacuum evaporator", "source": "Buy, $25k to $45k" },
+      { "item": "Tube-in-tube UHT steriliser", "source": "Buy, $10k to $18k" },
+      { "item": "Sachet form-fill-seal machine", "source": "Buy, $8k to $15k" },
+      { "item": "Pasteurising bath and cooling", "source": "Buy, $3k to $6k" },
+      { "item": "Steam boiler and water treatment", "source": "Buy, $8k to $15k" },
+      { "item": "Tanks, screw pumps, CIP", "source": "Buy, $6k to $12k" }
+    ],
+    "steps": [
+      {
+        "title": "Contract tomato supply",
+        "when": "Weeks 1 to 4",
+        "detail": "Agree farmgate supply through NATPAN and Kadawa growers for every day of the February to May campaign. Daily volume, not price, is what limits the line.",
+        "who": "You and NATPAN"
+      },
+      {
+        "title": "Order the line",
+        "when": "Weeks 1 to 12",
+        "detail": "Get quotes from turnkey suppliers for a 500 kg/h line. Equipment lead time is the longest item in the plan.",
+        "who": "You and line supplier"
+      },
+      {
+        "title": "Register with NAFDAC",
+        "when": "In parallel",
+        "detail": "Product registration (₦50,000) and facility inspection run alongside the equipment order.",
+        "who": "You"
+      },
+      {
+        "title": "Install and commission",
+        "when": "Weeks 12 to 14",
+        "detail": "Install the line, boiler and water treatment, then run test batches before the campaign opens.",
+        "who": "Supplier engineers"
+      },
+      {
+        "title": "Wash, sort, crush and hot break",
+        "when": "Shift 1",
+        "detail": "Take in 7.8 t of fresh tomatoes. Wash, remove unripe and rotten fruit, crush and hot break at 85 to 90°C.",
+        "who": "Line operators"
+      },
+      {
+        "title": "Pulp, evaporate and sterilise",
+        "when": "Shifts 1 to 2",
+        "detail": "Pulp to about 90% yield, evaporate under vacuum to 28 Brix, then UHT sterilise at 108 to 110°C.",
+        "who": "Line operators"
+      },
+      {
+        "title": "Fill, pasteurise and pack",
+        "when": "Shift 2",
+        "detail": "Fill 20,000 70g sachets, pasteurise at 80°C, cool, code and pack 50 to a carton.",
+        "who": "Line operators"
+      }
+    ]
+  },
+  "quotes": {
+    "product": "tomato paste",
+    "currency": "NGN",
+    "batch": 20000,
+    "unit": "sachet",
+    "brief": "70g double concentrate tomato paste sachets, 28 to 30 Brix, hot break. 20,000 sachets per batch, three batches during the February to May campaign. Collection in Kano. Quote per sachet, your minimum order, and whether you can supply NAFDAC-compliant labelling.",
+    "attachments": ["Production plan attached", "NAFDAC-compliant labelling", "Reply by 17 Oct"],
+    "recipients": [
+      { "name": "NATPAN", "kind": "Tomato supply", "area": "Kano", "selected": true },
+      { "name": "FIIRO", "kind": "Toll processing and training", "area": "Oshodi, Lagos", "selected": true },
+      { "name": "Shanghai Keyfood", "kind": "Tomato paste line", "area": "China", "selected": true },
+      { "name": "DT Food Machine", "kind": "Tomato paste line", "area": "China", "selected": true },
+      { "name": "Lagos packaging converters", "kind": "Laminate film", "area": "Agbara, Lagos", "selected": true }
+    ],
+    "quotes": []
+  }
+}

@@ -25,10 +25,11 @@ Each stage should be a distinct, inspectable step (not one opaque LLM call) so a
 
 - **Backend**: FastAPI (Python) — owns the agent pipeline (identify → BOM → process → cost → suppliers → compare → plan).
 - **Frontend**: Next.js (TypeScript) — product input (text/photo), plan display, supplier comparison UI.
-- **AI provider**: Gemini, via the `google-genai` Python SDK (`google.genai`), from the backend. Keep all `genai.Client()` calls behind one module in the pipeline so prompts/model names aren't scattered across pipeline stages.
-- **Web search/research**: Tavily — for the "find local suppliers/manufacturers" pipeline stage and any live web lookups (comparable costs, import data, supplier info) the LLM can't answer from its own knowledge. Not installed yet — when wiring it in, follow the setup instructions at https://tavily.com/agent-setup/SKILL.md rather than guessing the integration steps.
+- **AI provider**: Gemma 4 31B (`gemma-4-31b-it`) through the Gemini API, via the `google-genai` SDK. All model calls live in `backend/app/llm/client.py` and all prompts in `backend/app/llm/tasks.py`; stages never build prompts or name models.
+- **Data sources** (one module each in `backend/app/sources/`, all cached in SQLite): Serper `/places` for real businesses (Google Maps data), Tavily for web evidence (prices, wages, power, duties), Firecrawl for product links and supplier websites, ExchangeRate-API for FX, API Ninjas for world commodity prices, OpenStreetMap Nominatim for geocoding. Labour rates, local markups and freight have no good free API: the model estimates them from Tavily evidence and must label them as estimates.
+- **Storage**: SQLite (`backend/makelocal.db`): projects, stage results, and the lookup cache.
 
-Layout: `frontend/` is the Next.js app (Next 16, Tailwind v4 — read its own `frontend/AGENTS.md` before editing). No backend yet. Add DB and hosting here once chosen.
+Layout: `frontend/` is the Next.js app (Next 16, Tailwind v4 — read its own `frontend/AGENTS.md` before editing). `backend/` is the FastAPI app (`uv run uvicorn app.main:app`, tests with `uv run pytest`). `scripts/dev.sh` runs both.
 
 ## Architecture principles
 
@@ -47,7 +48,7 @@ Layout: `frontend/` is the Next.js app (Next 16, Tailwind v4 — read its own `f
 
 ## Open decisions (fill in as they're made)
 
-- [ ] DB and hosting.
-- [ ] Target region(s)/locale for the initial supplier directory and cost data.
-- [ ] Source of supplier data (manual seed list, scraping, partner API).
-- [ ] Whether "contact supplier" ships in the hackathon demo or stays a stretch goal.
+- [x] DB: SQLite. Hosting still open.
+- [x] Demo region: Kano, Nigeria. Demo product: tomato paste, 70g sachet (researched data in `backend/data/demo/tomato-paste.json`, served without API keys).
+- [x] Supplier data: live Google Maps listings via Serper, plus the researched demo list.
+- [x] "Contact supplier" ships as draft-only: the user copies the brief or opens it in WhatsApp. Nothing is sent automatically.

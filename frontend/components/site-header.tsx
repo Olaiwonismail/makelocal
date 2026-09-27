@@ -1,8 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 
-const navLinks = ["How it works", "Examples", "For workshops", "For suppliers"];
-
 export function SiteHeader({
   minimal = false,
   actions,
@@ -29,34 +27,17 @@ export function SiteHeader({
         <Link href="/" className="font-display text-[28px] font-extrabold leading-none">
           MakeLocal
         </Link>
-        <nav aria-label="Main" className="hidden md:block">
-          <ul className="flex gap-7 text-[15px] font-medium">
-            {navLinks.map((label) => (
-              <li key={label}>
-                <a href="#" className="underline-offset-4 hover:underline">
-                  {label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-        <div className="flex items-center gap-4 sm:gap-6">
+        <nav aria-label="Main" className="flex items-center gap-5 sm:gap-7">
+          <Link href="/#imports" className="hidden text-[15px] font-medium underline-offset-4 hover:underline sm:inline">
+            Examples
+          </Link>
           <Link
             href="/projects"
-            className="hidden text-[15px] font-medium whitespace-nowrap underline-offset-4 hover:underline sm:inline"
+            className="rounded-lg bg-ink px-4 py-2.5 text-[14px] font-semibold whitespace-nowrap text-sun hover:bg-ink/90"
           >
             My projects
           </Link>
-          <a href="#" className="text-[15px] font-medium underline-offset-4 hover:underline">
-            Log in
-          </a>
-          <a
-            href="#"
-            className="rounded-lg bg-ink px-4 py-2.5 text-[14px] font-semibold whitespace-nowrap text-sun hover:bg-ink/90"
-          >
-            List your workshop
-          </a>
-        </div>
+        </nav>
       </div>
     </header>
   );

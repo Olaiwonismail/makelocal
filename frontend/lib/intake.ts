@@ -1,6 +1,4 @@
-export type IntakeStep = "Quantity" | "Market" | "Match" | "One more thing";
-
-export const intakeSteps: IntakeStep[] = ["Quantity", "Market", "Match", "One more thing"];
+export const intakeSteps = ["Quantity", "Market", "Match", "One more thing"] as const;
 
 export const quantityPresets = [
   "Just one to test",
@@ -10,19 +8,9 @@ export const quantityPresets = [
   "More than 10,000",
 ];
 
-export const salesMarkets = [
-  "My city",
-  "Across my country",
-  "Neighbouring countries",
-  "Export overseas",
-];
+export const salesMarkets = ["My city", "Across my country", "Neighbouring countries", "Export overseas"];
 
-export type MatchLevel = {
-  title: string;
-  description: string;
-};
-
-export const matchLevels: MatchLevel[] = [
+export const matchLevels = [
   {
     title: "Exact match",
     description: "Same materials, size and finish as the one you have in mind.",
@@ -36,20 +24,3 @@ export const matchLevels: MatchLevel[] = [
     description: "Improve on it: stronger, lighter, or cheaper to run.",
   },
 ];
-
-export type FollowUpQuestion = {
-  question: string;
-  hint: string;
-  options: string[];
-};
-
-// Placeholder until the backend exists: the AI will write this question and its
-// answer options for each product. Every product gets the jerrycan example for now.
-export function getFollowUpQuestion(product: string): FollowUpQuestion {
-  void product;
-  return {
-    question: "What will the jerrycan hold?",
-    hint: "Food-grade, fuel and chemical containers need different plastics and wall thickness.",
-    options: ["Drinking water", "Cooking oil", "Fuel or kerosene", "Chemicals"],
-  };
-}

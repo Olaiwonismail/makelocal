@@ -1,34 +1,17 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState, type ReactNode } from "react";
-import {
-  getFollowUpQuestion,
-  intakeSteps,
-  matchLevels,
-  quantityPresets,
-  salesMarkets,
-} from "@/lib/intake";
+import { useEffect, useState, type ReactNode } from "react";
+import { StageLoader } from "@/components/stage-loader";
+import { NoProject, StageError } from "@/components/stage-view";
+import { ApiError, getProject, saveAnswers } from "@/lib/api";
+import { intakeSteps, matchLevels, quantityPresets, salesMarkets } from "@/lib/intake";
+import { withProject } from "@/lib/routes";
+import type { Answers as SavedAnswers, FollowUpQuestion, Project } from "@/lib/types";
+import { useStage } from "@/lib/use-stage";
 
-type Answers = {
-  quantity: string;
-  exactQuantity: string;
-  sellIn: string;
-  makeIn: string;
-  match: string;
-  followUp: string;
-  followUpText: string;
-};
-
-const emptyAnswers: Answers = {
-  quantity: "",
-  exactQuantity: "",
-  sellIn: "",
-  makeIn: "",
-  match: "",
-  followUp: "",
-  followUpText: "",
-};
+// Form state keeps the exact quantity as text while it's being typed.
+type Answers = Omit<SavedAnswers, "exactQuantity"> & { exactQuantity: string };
 
 const stepAnswerKeys: (keyof Answers)[][] = [
   ["quantity", "exactQuantity"],
@@ -37,13 +20,68 @@ const stepAnswerKeys: (keyof Answers)[][] = [
   ["followUp", "followUpText"],
 ];
 
-export function IntakeFlow({ product }: { product: string }) {
+function toForm(a: SavedAnswers): Answers {
+  return { ...a, exactQuantity: a.exactQuantity ? String(a.exactQuantity) : "" };
+}
+
+function fromForm(a: Answers): SavedAnswers {
+  const exact = Number.parseInt(a.exactQuantity, 10);
+  return { ...a, makeIn: a.makeIn.trim(), exactQuantity: Number.isFinite(exact) && exact > 0 ? exact : null };
+}
+
+const container = "mx-auto w-full max-w-[1040px] px-4 pt-12 pb-24 sm:pt-14";
+
+export function IntakeFlow({ projectId }: { projectId: string }) {
+  const [state, setState] = useState<{ project?: Project; error?: ApiError }>({});
+
+  useEffect(() => {
+    if (!projectId) return;
+    let cancelled = false;
+    getProject(projectId).then(
+      (project) => !cancelled && setState({ project }),
+      (error: ApiError) => !cancelled && setState({ error }),
+    );
+    return () => {
+      cancelled = true;
+    };
+  }, [projectId]);
+
+  if (!projectId) {
+    return (
+      <div className={container}>
+        <NoProject />
+      </div>
+    );
+  }
+  if (state.error) {
+    return (
+      <div className={container}>
+        <StageError error={state.error} />
+      </div>
+    );
+  }
+  if (!state.project) {
+    return (
+      <div className={container}>
+        <StageLoader stage="create" compact />
+      </div>
+    );
+  }
+  return <IntakeForm project={state.project} />;
+}
+
+function IntakeForm({ project }: { project: Project }) {
+  const router = useRouter();
   const [step, setStep] = useState(0);
   const [reached, setReached] = useState(0);
-  const [answers, setAnswers] = useState<Answers>(emptyAnswers);
+  const [answers, setAnswers] = useState<Answers>(() => toForm(project.answers));
   const [done, setDone] = useState(false);
-  const followUp = getFollowUpQuestion(product);
+  const [saving, setSaving] = useState(false);
+  const [saveError, setSaveError] = useState<ApiError | null>(null);
+  const followUp = useStage(project.id, "follow_up");
+  const question: FollowUpQuestion | null = followUp.status === "done" ? followUp.data : null;
   const isLast = step === intakeSteps.length - 1;
+  const product = project.product;
 
   function set(patch: Partial<Answers>) {
     setAnswers((a) => ({ ...a, ...patch }));
@@ -54,15 +92,28 @@ export function IntakeFlow({ product }: { product: string }) {
     setReached((r) => Math.max(r, next));
   }
 
-  function advance() {
-    if (isLast) setDone(true);
+  async function finish(current: Answers) {
+    setSaving(true);
+    setSaveError(null);
+    try {
+      await saveAnswers(project.id, fromForm(current));
+      setDone(true);
+    } catch (e) {
+      setSaveError(e as ApiError);
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  function advance(current = answers) {
+    if (isLast) void finish(current);
     else goTo(step + 1);
   }
 
   function skip() {
-    const cleared = Object.fromEntries(stepAnswerKeys[step].map((k) => [k, ""]));
-    set(cleared);
-    advance();
+    const cleared = { ...answers, ...Object.fromEntries(stepAnswerKeys[step].map((k) => [k, ""])) };
+    setAnswers(cleared);
+    advance(cleared);
   }
 
   return (
@@ -111,7 +162,8 @@ export function IntakeFlow({ product }: { product: string }) {
           <Summary
             product={product}
             answers={answers}
-            followUpQuestion={followUp.question}
+            followUpQuestion={question?.question ?? "Product detail"}
+            onNext={() => router.push(withProject("/plan/analysis", project.id))}
             onEdit={() => {
               setDone(false);
               setStep(0);
@@ -218,26 +270,33 @@ export function IntakeFlow({ product }: { product: string }) {
                 </Question>
               )}
 
-              {step === 3 && (
-                <Question title={followUp.question} hint={followUp.hint}>
-                  <ChipGroup
-                    label={followUp.question}
-                    options={followUp.options}
-                    value={answers.followUp}
-                    onChange={(value) => set({ followUp: value })}
-                  />
-                  <label htmlFor="follow-up-text" className="mt-6 block text-[15px] font-medium">
-                    Or tell us in your own words
-                  </label>
-                  <textarea
-                    id="follow-up-text"
-                    rows={2}
-                    value={answers.followUpText}
-                    onChange={(e) => set({ followUpText: e.target.value })}
-                    className="mt-2.5 block w-full max-w-[620px] resize-none rounded-lg border-[1.5px] border-ink bg-white px-3.5 py-3 text-[16px] leading-relaxed focus:outline-2 focus:outline-offset-2 focus:outline-ink"
-                  />
-                </Question>
-              )}
+              {step === 3 &&
+                (question ? (
+                  <Question title={question.question} hint={question.hint}>
+                    <ChipGroup
+                      label={question.question}
+                      options={question.options}
+                      value={answers.followUp}
+                      onChange={(value) => set({ followUp: value })}
+                    />
+                    <FreeText value={answers.followUpText} onChange={(followUpText) => set({ followUpText })} />
+                  </Question>
+                ) : followUp.status === "loading" ? (
+                  <div className="mt-4">
+                    <StageLoader stage="follow_up" compact />
+                  </div>
+                ) : (
+                  <Question
+                    title="Anything else we should know?"
+                    hint="We couldn't write a question for this product just now. Add any detail that changes how it's made."
+                  >
+                    <FreeText
+                      label="Size, format, material or use"
+                      value={answers.followUpText}
+                      onChange={(followUpText) => set({ followUpText })}
+                    />
+                  </Question>
+                ))}
             </div>
 
             <div className="flex items-center justify-between gap-4 px-6 pb-7 sm:px-9">
@@ -250,12 +309,18 @@ export function IntakeFlow({ product }: { product: string }) {
               </button>
               <button
                 type="button"
-                onClick={advance}
-                className="rounded-lg bg-ink px-7 py-3.5 text-[16px] font-semibold text-sun hover:bg-ink/90"
+                onClick={() => advance()}
+                disabled={saving}
+                className="rounded-lg bg-ink px-7 py-3.5 text-[16px] font-semibold text-sun hover:bg-ink/90 disabled:opacity-60"
               >
-                {isLast ? "Finish" : "Continue"}
+                {saving ? "Saving…" : isLast ? "Finish" : "Continue"}
               </button>
             </div>
+            {saveError && (
+              <p role="alert" className="px-6 pb-6 text-right text-[15px] font-semibold sm:px-9">
+                {saveError.message}
+              </p>
+            )}
           </>
         )}
       </div>
@@ -307,18 +372,44 @@ function ChipGroup({
   );
 }
 
+function FreeText({
+  label = "Or tell us in your own words",
+  value,
+  onChange,
+}: {
+  label?: string;
+  value: string;
+  onChange: (value: string) => void;
+}) {
+  return (
+    <>
+      <label htmlFor="follow-up-text" className="mt-6 block text-[15px] font-medium">
+        {label}
+      </label>
+      <textarea
+        id="follow-up-text"
+        rows={2}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="mt-2.5 block w-full max-w-[620px] resize-none rounded-lg border-[1.5px] border-ink bg-white px-3.5 py-3 text-[16px] leading-relaxed focus:outline-2 focus:outline-offset-2 focus:outline-ink"
+      />
+    </>
+  );
+}
+
 function Summary({
   product,
   answers,
   followUpQuestion,
   onEdit,
+  onNext,
 }: {
   product: string;
   answers: Answers;
   followUpQuestion: string;
   onEdit: () => void;
+  onNext: () => void;
 }) {
-  const router = useRouter();
   const quantity = answers.exactQuantity
     ? Number(answers.exactQuantity).toLocaleString("en")
     : answers.quantity;
@@ -357,9 +448,7 @@ function Summary({
         </button>
         <button
           type="button"
-          onClick={() =>
-            router.push(product ? `/plan/analysis?${new URLSearchParams({ product })}` : "/plan/analysis")
-          }
+          onClick={onNext}
           className="rounded-lg bg-ink px-7 py-3.5 text-[16px] font-semibold text-sun hover:bg-ink/90"
         >
           Next
