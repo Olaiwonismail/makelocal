@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState, type ChangeEvent, type FormEvent } from "react";
 import { categories, importedProducts, suggestions, type Category } from "@/lib/catalog";
 
@@ -17,6 +18,7 @@ export function HomePlanner() {
   const [filter, setFilter] = useState<Filter>("All");
   const promptRef = useRef<HTMLTextAreaElement>(null);
   const fileRef = useRef<HTMLInputElement>(null);
+  const router = useRouter();
 
   useEffect(() => {
     return () => {
@@ -46,7 +48,12 @@ export function HomePlanner() {
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (!prompt.trim() && !photo) promptRef.current?.focus();
+    const product = prompt.trim();
+    if (!product && !photo) {
+      promptRef.current?.focus();
+      return;
+    }
+    router.push(product ? `/plan?${new URLSearchParams({ product })}` : "/plan");
   }
 
   return (
@@ -74,7 +81,7 @@ export function HomePlanner() {
             rows={3}
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
-            placeholder="You can type, or paste a product link. Press + to upload a photo."
+            placeholder="You can type, upload a photo, or paste a product link"
             className="block w-full resize-none bg-transparent px-5 pt-5 text-[17px] leading-relaxed placeholder:text-faint focus:outline-none"
           />
 

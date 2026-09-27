@@ -2,7 +2,19 @@ import Link from "next/link";
 
 const navLinks = ["How it works", "Examples", "For workshops", "For suppliers"];
 
-export function SiteHeader() {
+export function SiteHeader({ minimal = false }: { minimal?: boolean }) {
+  if (minimal) {
+    return (
+      <header className="border-b-[1.5px] border-ink">
+        <div className="flex h-20 items-center px-4 sm:px-14">
+          <Link href="/" className="font-display text-[34px] font-extrabold leading-none">
+            MakeLocal
+          </Link>
+        </div>
+      </header>
+    );
+  }
+
   return (
     <header className="border-b-[1.5px] border-ink">
       <div className="mx-auto flex h-16 w-full max-w-[1080px] items-center justify-between gap-6 px-4 sm:px-10">
