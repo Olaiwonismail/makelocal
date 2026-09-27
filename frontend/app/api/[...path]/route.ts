@@ -2,6 +2,9 @@
 // backend's address. Pipeline stages can take a minute; fetch here has no short timeout.
 const API_URL = process.env.API_URL ?? "http://127.0.0.1:8000";
 
+// Seconds. Live research steps can take a minute or more; hosts like Vercel read this.
+export const maxDuration = 300;
+
 async function forward(request: Request, ctx: RouteContext<"/api/[...path]">) {
   const { path } = await ctx.params;
   const { search } = new URL(request.url);
