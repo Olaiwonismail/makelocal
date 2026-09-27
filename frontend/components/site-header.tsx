@@ -41,6 +41,12 @@ export function SiteHeader({
           </ul>
         </nav>
         <div className="flex items-center gap-4 sm:gap-6">
+          <Link
+            href="/projects"
+            className="hidden text-[15px] font-medium whitespace-nowrap underline-offset-4 hover:underline sm:inline"
+          >
+            My projects
+          </Link>
           <a href="#" className="text-[15px] font-medium underline-offset-4 hover:underline">
             Log in
           </a>

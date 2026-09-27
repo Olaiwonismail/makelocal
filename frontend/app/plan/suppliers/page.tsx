@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { ReportShell } from "@/components/report-shell";
+import { NextLink, ReportShell } from "@/components/report-shell";
 import { SupplierDirectory } from "@/components/supplier-directory";
+import { withProduct } from "@/lib/routes";
 import { getSupplyChain } from "@/lib/suppliers";
 
 export const metadata: Metadata = {
@@ -28,6 +29,9 @@ export default async function SuppliersPage({ searchParams }: PageProps<"/plan/s
           These are sample listings for the demo, not real businesses.
         </p>
         <SupplierDirectory chain={chain} />
+        <div className="mt-10 flex justify-end">
+          <NextLink href={withProduct("/plan/production", product)}>Next</NextLink>
+        </div>
       </div>
     </ReportShell>
   );
