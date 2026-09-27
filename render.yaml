@@ -1,0 +1,26 @@
+# Render blueprint for the MakeLocal API. New > Blueprint > pick this repo.
+services:
+  - type: web
+    name: makelocal-api
+    runtime: python
+    rootDir: backend
+    plan: free
+    branch: master
+    buildCommand: pip install uv && uv sync --frozen --no-dev
+    startCommand: uv run --no-dev uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11"
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: SERPER_API_KEY
+        sync: false
+      - key: TAVILY_API_KEY
+        sync: false
+      - key: FIRECRAWL_API_KEY
+        sync: false
+      - key: EXCHANGERATE_API_KEY
+        sync: false
+      - key: API_NINJAS_KEY
+        sync: false

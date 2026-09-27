@@ -34,6 +34,10 @@ For any other product, set keys in `backend/.env` (copy `backend/.env.example`) 
 
 `GET http://localhost:8000/health` shows which sources are switched on.
 
+## Deploy
+
+See [DEPLOY.md](DEPLOY.md): API on Render (`render.yaml` blueprint), web app on Vercel, both free.
+
 ## How it works
 
 Each step is its own module in `backend/app/stages/`, run through `POST /projects/{id}/stages/{stage}` and stored in SQLite so it never reruns unless asked:
