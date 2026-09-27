@@ -43,6 +43,23 @@ A user types **"tomato paste sachets"**, says they want 20,000 sachets and want 
 
 In minutes, an entrepreneur knows whether to build, when, what to watch out for, and who to call first.
 
+## Try the demo
+
+Open **https://makelocal-liart.vercel.app** and walk through the tomato paste example yourself. It's served from our research, so it works instantly and needs no setup.
+
+1. **Start the demo.** On the home page, click **Try the demo** under the search box. (Or type "tomato paste" in the box and press **Plan production**; any product that mentions tomato opens the demo.)
+2. **Answer the four questions.** They're already filled in for the demo: 20,000 sachets, sold across the country, made in Kano, similar is fine. Press **Continue** on each. The fourth, *"Sachet or tin?"*, is the question the AI writes for this product. Press **Finish**, check the summary, then **Next**.
+3. **Product Analysis.** The tree shows materials, manufacturing steps and equipment. Scroll down for quantities per sachet and per batch, process temperatures, machine prices and why Nigeria should make its own paste. Press **Next**.
+4. **Feasibility & Cost.** Local ₦117 against imported ₦130 per sachet. Under each line, a **Sourced** or **Estimate** tag says where the number comes from. Read the verdict, then **Watch out for** and **Price references**. Press **Next**.
+5. **Local Supply Chain.** Filter by **Materials**, **Workshops** or **Services**. Press **Request quote** on any business to get a draft message you can edit and copy. Press **Next**.
+6. **Production Plan.** The workflow (the dark step is the one that limits capacity), batch stats, materials, machines and the step-by-step plan. Press **Next**.
+7. **Quotes & Contact.** Press **Edit brief** to change the request, tick who it goes to, then **Send request**: MakeLocal shows who it would go to and lets you copy the brief. Nothing is sent for you.
+8. **My projects.** Top right on any page. The demo project shows its progress and the ₦13 per sachet saving. Press its button to jump back to where it left off.
+
+You can jump between sections at any time from the left sidebar, and **Export report** prints the current page or saves it as a PDF.
+
+Want to see the live AI instead? Type any other product, like "plastic chairs" or "school desks", and answer the questions. Each step then runs live research, so it can take up to a minute; an animation shows what it's doing.
+
 ## How we help
 
 - **Entrepreneurs and SMEs** get a first feasibility study and a production plan without paying for a consultant.
