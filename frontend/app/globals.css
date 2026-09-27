@@ -20,3 +20,48 @@ body {
   font-variation-settings: "wdth" 75, "opsz" 96;
   letter-spacing: -0.01em;
 }
+
+/* Loading: a conveyor belt of stripes while a pipeline stage runs. */
+@keyframes conveyor {
+  to {
+    background-position: 28px 0;
+  }
+}
+
+.conveyor {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    var(--color-ink) 0 7px,
+    transparent 7px 14px
+  );
+  background-size: 28px 100%;
+  animation: conveyor 0.9s linear infinite;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+.rise {
+  animation: rise 0.35s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .conveyor,
+  .rise {
+    animation: none;
+  }
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    background: white;
+  }
+}

@@ -1,8 +1,12 @@
 "use client";
 
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState, type ChangeEvent, type FormEvent } from "react";
+import { StageLoader } from "@/components/stage-loader";
+import { ApiError, createProject } from "@/lib/api";
 import { categories, importedProducts, suggestions, type Category } from "@/lib/catalog";
+import { withProject } from "@/lib/routes";
 
 type Filter = Category | "All";
 
@@ -17,6 +21,9 @@ export function HomePlanner() {
   const [filter, setFilter] = useState<Filter>("All");
   const promptRef = useRef<HTMLTextAreaElement>(null);
   const fileRef = useRef<HTMLInputElement>(null);
+  const router = useRouter();
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     return () => {
@@ -44,9 +51,23 @@ export function HomePlanner() {
     setPhoto({ file, url: URL.createObjectURL(file) });
   }
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (!prompt.trim() && !photo) promptRef.current?.focus();
+    const product = prompt.trim();
+    if (!product && !photo) {
+      promptRef.current?.focus();
+      return;
+    }
+    setSubmitting(true);
+    setError("");
+    try {
+      const image = photo ? await shrinkImage(photo.file) : undefined;
+      const project = await createProject(product, image);
+      router.push(withProject("/plan", project.id));
+    } catch (err) {
+      setError(err instanceof ApiError ? err.message : "The photo couldn't be read. Try another one.");
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -74,7 +95,7 @@ export function HomePlanner() {
             rows={3}
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
-            placeholder="You can type, or paste a product link. Press + to upload a photo."
+            placeholder="You can type, upload a photo, or paste a product link"
             className="block w-full resize-none bg-transparent px-5 pt-5 text-[17px] leading-relaxed placeholder:text-faint focus:outline-none"
           />
 
@@ -121,12 +142,24 @@ export function HomePlanner() {
             />
             <button
               type="submit"
-              className="rounded-lg bg-ink px-5 py-3 text-[15px] font-semibold text-sun hover:bg-ink/90"
+              disabled={submitting}
+              className="rounded-lg bg-ink px-5 py-3 text-[15px] font-semibold text-sun hover:bg-ink/90 disabled:opacity-60"
             >
-              Plan production
+              {submitting ? "Working…" : "Plan production"}
             </button>
           </div>
         </form>
+
+        {submitting && (photo || /^https?:\/\//.test(prompt.trim())) && (
+          <div className="mx-auto mt-6 max-w-[745px] text-left">
+            <StageLoader stage="create" compact />
+          </div>
+        )}
+        {error && (
+          <p role="alert" className="mx-auto mt-5 max-w-[745px] rounded-lg border-2 border-ink bg-cream px-5 py-3 text-left text-[15px]">
+            {error}
+          </p>
+        )}
 
         <div className="mx-auto mt-9 flex max-w-[745px] flex-wrap items-center justify-center gap-2.5">
           <span className="mr-1 text-[14px] text-muted">Try</span>
@@ -153,6 +186,7 @@ export function HomePlanner() {
       </section>
 
       <section
+        id="imports"
         aria-labelledby="imports-heading"
         className="mx-auto w-full max-w-[1080px] px-4 pt-24 pb-24 sm:px-10 sm:pt-28"
       >
@@ -237,4 +271,16 @@ function CloseIcon() {
       <path d="M18 6 6 18M6 6l12 12" />
     </svg>
   );
+}
+
+// Keep uploads small: the model only needs enough detail to recognise the product.
+async function shrinkImage(file: File, maxSide = 1280): Promise<string> {
+  const bitmap = await createImageBitmap(file);
+  const scale = Math.min(1, maxSide / Math.max(bitmap.width, bitmap.height));
+  const canvas = document.createElement("canvas");
+  canvas.width = Math.round(bitmap.width * scale);
+  canvas.height = Math.round(bitmap.height * scale);
+  canvas.getContext("2d")!.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+  bitmap.close();
+  return canvas.toDataURL("image/jpeg", 0.85);
 }

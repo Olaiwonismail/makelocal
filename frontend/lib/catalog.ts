@@ -1,4 +1,4 @@
-export type Category = "Household" | "Furniture" | "Packaging";
+export type Category = "Food" | "Household" | "Furniture" | "Packaging";
 
 export type ImportedProduct = {
   name: string;
@@ -8,9 +8,16 @@ export type ImportedProduct = {
   machines: string;
 };
 
-export const categories: Category[] = ["Household", "Furniture", "Packaging"];
+export const categories: Category[] = ["Food", "Household", "Furniture", "Packaging"];
 
 export const importedProducts: ImportedProduct[] = [
+  {
+    name: "Tomato paste sachet",
+    category: "Food",
+    madeFrom: "Fresh tomatoes, laminate film",
+    process: "Hot break, vacuum evaporation, sachet filling",
+    machines: "Pulper, vacuum evaporator, form-fill-seal machine",
+  },
   {
     name: "Plastic chair",
     category: "Household",
@@ -24,13 +31,6 @@ export const importedProducts: ImportedProduct[] = [
     madeFrom: "Mild steel tube, plywood",
     process: "Cutting, welding, painting",
     machines: "Pipe cutter, MIG welder, spray gun",
-  },
-  {
-    name: "Tomato paste tin",
-    category: "Packaging",
-    madeFrom: "Tinplate steel sheet",
-    process: "Stamping, seaming, lacquering",
-    machines: "Power press, can seamer",
   },
   {
     name: "Face towel",
@@ -56,8 +56,8 @@ export const importedProducts: ImportedProduct[] = [
 ];
 
 export const suggestions = [
+  "Tomato paste sachets",
   "Plastic chairs",
-  "Tomato paste tins",
   "School desks",
   "Face towels",
   "Jerrycans",
