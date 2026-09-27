@@ -43,6 +43,7 @@ Layout: `frontend/` is the Next.js app (Next 16, Tailwind v4 — read its own `f
 - This is a hackathon project — prioritize a working end-to-end demo (one product, one region, a small seed supplier list) over completeness across every category. Breadth can come after the vertical slice works.
 - Since supplier "contact/quote" actions touch real businesses, always draft first and require explicit user confirmation before actually sending anything — don't wire up auto-send silently.
 - Once a stack is chosen, set up its standard test/build tooling rather than skipping it because "it's a hackathon."
+- Commits are authored as `OlaiwonIsmail <olaiwonismail@gmail.com>`. Don't add `Co-Authored-By` or `Claude-Session` trailers (or any other AI attribution) to commit messages or PR descriptions.
 
 ## Open decisions (fill in as they're made)
 
