@@ -57,6 +57,7 @@ export const importedProducts: ImportedProduct[] = [
 
 export const suggestions = [
   "Tomato paste sachets",
+  "Prepaid meters",
   "Plastic chairs",
   "School desks",
   "Face towels",
