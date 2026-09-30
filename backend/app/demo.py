@@ -1,4 +1,4 @@
-"""The researched demo products (tomato paste in Kano, laundry soap in Lagos).
+"""The researched demo product (tomato paste, Kano).
 
 Its stages are served from `data/demo/*.json` instead of the live pipeline, so the
 demo works without API keys and never depends on a flaky lookup during judging.

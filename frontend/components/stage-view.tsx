@@ -55,7 +55,7 @@ export function StageError({
           </Link>
         ) : error.code === "source_unavailable" ? (
           <Link href="/" className="rounded-lg bg-ink px-5 py-3 text-[15px] font-semibold text-sun hover:bg-ink/90">
-            Try a demo instead
+            Try tomato paste instead
           </Link>
         ) : (
           onRetry && (

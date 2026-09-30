@@ -70,12 +70,12 @@ export function HomePlanner() {
     }
   }
 
-  // The researched demos: served instantly from backend/data/demo, no API keys needed.
-  async function tryDemo(product: string) {
+  // The researched demo: served instantly from backend/data/demo, no API keys needed.
+  async function tryDemo() {
     setSubmitting(true);
     setError("");
     try {
-      const project = await createProject(product);
+      const project = await createProject("Tomato paste sachets");
       router.push(withProject("/plan", project.id));
     } catch (err) {
       setError(err instanceof ApiError ? err.message : "The demo couldn't start. Try again.");
@@ -199,27 +199,16 @@ export function HomePlanner() {
 
         <div className="mx-auto mt-8 flex max-w-[745px] flex-wrap items-center justify-center gap-x-4 gap-y-2 rounded-xl border-2 border-dashed border-ink px-5 py-4">
           <p className="text-[15px] text-ink/85">
-            New here? See a full plan for <span className="font-semibold">tomato paste sachets in Kano</span> or{" "}
-            <span className="font-semibold">laundry soap in Lagos</span>.
+            New here? See a full plan for <span className="font-semibold">tomato paste sachets in Kano</span>.
           </p>
-          <div className="flex flex-wrap justify-center gap-2">
-            <button
-              type="button"
-              onClick={() => tryDemo("Tomato paste sachets")}
-              disabled={submitting}
-              className="rounded-lg bg-ink px-4 py-2.5 text-[14px] font-semibold whitespace-nowrap text-sun hover:bg-ink/90 disabled:opacity-60"
-            >
-              Try the demo
-            </button>
-            <button
-              type="button"
-              onClick={() => tryDemo("Laundry bar soap")}
-              disabled={submitting}
-              className="rounded-lg border-2 border-ink px-4 py-2 text-[14px] font-semibold whitespace-nowrap hover:bg-cream disabled:opacity-60"
-            >
-              Try bar soap
-            </button>
-          </div>
+          <button
+            type="button"
+            onClick={tryDemo}
+            disabled={submitting}
+            className="rounded-lg bg-ink px-4 py-2.5 text-[14px] font-semibold whitespace-nowrap text-sun hover:bg-ink/90 disabled:opacity-60"
+          >
+            Try the demo
+          </button>
         </div>
       </section>
 
