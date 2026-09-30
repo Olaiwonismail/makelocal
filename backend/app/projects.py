@@ -71,7 +71,7 @@ def to_project(deps: Deps, row: sqlite3.Row) -> Project:
 
 
 def seed_demo(deps: Deps) -> None:
-    """Give an empty workspace the researched demo project, partway through quotes."""
+    """Give an empty workspace the researched demo projects, partway through quotes."""
     if deps.store.count_projects() > 0:
         return
     for fixture in demo.fixtures():
