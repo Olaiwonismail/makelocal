@@ -1,0 +1,500 @@
+{
+  "match": ["prepaid", "electricity meter", "energy meter", "smart meter", "power meter"],
+  "product": "Prepaid electricity meter, single-phase STS",
+  "answers": {
+    "quantity": "",
+    "exactQuantity": 2000,
+    "sellIn": "Across my country",
+    "makeIn": "Lagos, Nigeria",
+    "match": "Exact match",
+    "followUp": "Single-phase STS meter",
+    "followUpText": ""
+  },
+  "followUp": {
+    "question": "Single phase or three phase?",
+    "hint": "Single phase is the ordinary household meter and most of the 7.24 million unmetered customers. Three phase is for shops, factories and large buildings.",
+    "options": ["Single-phase STS meter", "Three-phase STS meter", "Single-phase DIN-rail meter"]
+  },
+  "analysis": {
+    "product": "Prepaid electricity meter, single-phase STS",
+    "summary": "A single-phase STS prepaid meter assembled in Lagos from an imported parts kit: built, calibrated, tested, certified and sealed here. Assembly, not making the circuit board from scratch.",
+    "branches": [
+      {
+        "title": "Materials",
+        "items": [
+          "Circuit board",
+          "Current sensor",
+          "Relay",
+          "Screen and keypad",
+          "Plastic casing",
+          "Terminal block",
+          "Backup battery",
+          "Seals, label, manual",
+          "Security credentials"
+        ]
+      },
+      {
+        "title": "Manufacturing",
+        "items": [
+          "Check the kits",
+          "Prepare the casings",
+          "Build it",
+          "Load software and keys",
+          "Calibrate",
+          "Safety test",
+          "Burn-in",
+          "Seal and mark",
+          "Pack"
+        ]
+      },
+      {
+        "title": "Equipment",
+        "items": [
+          "Calibration test bench",
+          "Key loading station",
+          "Safety tester",
+          "Burn-in rack",
+          "Assembly benches and tools",
+          "Laser marker",
+          "Test jigs",
+          "Sealing and packing station"
+        ]
+      }
+    ],
+    "materials": [
+      {
+        "name": "Circuit board",
+        "role": "The brain. Measures the electricity, remembers your credit, runs the software.",
+        "perUnit": "1 per meter",
+        "perBatch": "2,000, in the parts kits",
+        "source": "Imported. Nobody in Nigeria makes these yet."
+      },
+      {
+        "name": "Current sensor",
+        "role": "Measures how much electricity is flowing through.",
+        "perUnit": "1 per meter",
+        "perBatch": "2,000",
+        "source": "Imported with the kit"
+      },
+      {
+        "name": "Relay",
+        "role": "The switch that cuts power when credit runs out and restores it on top-up.",
+        "perUnit": "1 per meter",
+        "perBatch": "2,000",
+        "source": "Imported"
+      },
+      {
+        "name": "Screen and keypad",
+        "role": "Shows remaining units and tamper warnings; takes the 20-digit token.",
+        "perUnit": "1 each per meter",
+        "perBatch": "2,000 each",
+        "source": "Screen imported. Keypad imported, or moulded here."
+      },
+      {
+        "name": "Plastic casing",
+        "role": "Housing, back plate and terminal cover. Sealable and weatherproof.",
+        "perUnit": "1 set per meter",
+        "perBatch": "2,000 sets",
+        "source": "Can be made in Nigeria. Aba and Ogun have the moulding machines."
+      },
+      {
+        "name": "Terminal block",
+        "role": "Where the wires from the wall connect.",
+        "perUnit": "1 set per meter",
+        "perBatch": "2,000 sets",
+        "source": "Partly local, mostly imported"
+      },
+      {
+        "name": "Backup battery",
+        "role": "Keeps the clock and tamper record running when power is off.",
+        "perUnit": "1 per meter",
+        "perBatch": "2,000",
+        "source": "Imported"
+      },
+      {
+        "name": "Seals, label, manual",
+        "role": "Tamper seals, the NEMSA mark, user instructions.",
+        "perUnit": "1 set per meter",
+        "perBatch": "2,000 sets",
+        "source": "Printed in Lagos"
+      },
+      {
+        "name": "Security credentials",
+        "role": "The digital keys that make the DisCo's tokens work on this specific meter.",
+        "perUnit": "1 per meter",
+        "perBatch": "2,000",
+        "source": "Licensed through the STS Association, loaded in your own factory"
+      }
+    ],
+    "process": [
+      {
+        "title": "Check the kits",
+        "detail": "Count and inspect incoming boxes and test a sample of boards. A bad batch caught here costs nothing; caught after calibration it costs everything. Half a day a batch."
+      },
+      { "title": "Prepare the casings", "detail": "Check, clean and label the plastic housings." },
+      {
+        "title": "Build it",
+        "detail": "Seat the board in the casing, connect relay and sensor, fit keypad and screen. Anti-static benches, because boards die from a static shock. About 4 minutes a meter."
+      },
+      {
+        "title": "Load software and keys",
+        "detail": "Flash the software, then inject the security credentials from a locked device. This makes the DisCo's tokens work on your meter. 1 minute a meter."
+      },
+      {
+        "title": "Calibrate",
+        "detail": "Check each meter against a known-accurate reference at several power levels and adjust until it reads correctly. The slow step that sets the line's pace."
+      },
+      { "title": "Safety test", "detail": "Apply high voltage to prove the insulation holds. NEMSA requires it. 1 minute a meter." },
+      { "title": "Burn-in", "detail": "Run meters powered on a rack for 4 to 8 hours to catch early failures before they reach a customer's wall." },
+      { "title": "Seal and mark", "detail": "Fit tamper seals, laser-mark the serial number and register it with the DisCo." },
+      { "title": "Pack", "detail": "Box with manual and warranty card, stack on pallets." }
+    ],
+    "equipment": [
+      { "name": "Calibration test bench", "purpose": "Accuracy and NEMSA approval", "costUsdLow": 18000, "costUsdHigh": 40000 },
+      { "name": "Key loading station", "purpose": "Inject STS security keys", "costUsdLow": 6000, "costUsdHigh": 12000 },
+      { "name": "Safety tester", "purpose": "High-voltage insulation test", "costUsdLow": 3000, "costUsdHigh": 6000 },
+      { "name": "Burn-in rack", "purpose": "Catch early failures", "costUsdLow": 4000, "costUsdHigh": 9000 },
+      { "name": "Assembly benches and tools", "purpose": "Anti-static assembly", "costUsdLow": 3000, "costUsdHigh": 7000 },
+      { "name": "Laser marker", "purpose": "Serials and NEMSA mark", "costUsdLow": 4000, "costUsdHigh": 8000 },
+      { "name": "Test jigs", "purpose": "Load software, function check", "costUsdLow": 2000, "costUsdHigh": 5000 },
+      { "name": "Sealing and packing station", "purpose": "Seals, boxing, pallets", "costUsdLow": 1500, "costUsdHigh": 3000 }
+    ],
+    "context": [
+      "Of about 13.3 million registered electricity customers, roughly 6 million have meters. The other 7.24 million are on estimated billing.",
+      "Three pots of money are live: ₦100bn under the Presidential Meter Initiative, ₦28bn under Tranche B of the Meter Acquisition Fund, and DISREP on a $500 million World Bank facility.",
+      "The rules already say 30% of contracted meter volumes must come from local firms.",
+      "A Meter Asset Provider must hold at least 2,000 meters in stock to bid for work, so 2,000 is the smallest batch that gets you into the market.",
+      "This is assembly: the circuit board comes from abroad, as it does for almost every meter assembled outside China. The plastic casing is the first part worth bringing fully in-house.",
+      "A 300 meter a day line costs $45,000 to $90,000, roughly ₦95m landed and installed. No circuit board machinery is needed to start."
+    ],
+    "sources": [
+      { "title": "MadeLocal technical pack: prepaid electricity meters, September 2026" },
+      { "title": "Ikeja Electric approved vendor list, August 2025" },
+      { "title": "Equipment catalogue ranges (not quotes)" }
+    ]
+  },
+  "cost": {
+    "product": "prepaid meter",
+    "unit": "meter",
+    "location": "Lagos",
+    "currency": "NGN",
+    "units": 2000,
+    "local": [
+      {
+        "label": "Parts kit, landed",
+        "perUnit": 27100,
+        "basis": "Kit at $15, freight, 5% duty under the assembler scheme, no VAT, port charges and haulage",
+        "kind": "estimate"
+      },
+      {
+        "label": "Wages",
+        "perUnit": 1200,
+        "basis": "Twelve on the line plus support staff at year-one output (about a quarter of capacity). About ₦264 at full rate.",
+        "kind": "estimate"
+      },
+      { "label": "Calibration and keys", "perUnit": 900, "basis": "Bench time, reference equipment, STS licensing", "kind": "estimate" },
+      { "label": "Running the factory", "perUnit": 2800, "basis": "Rent, power, wear on the machines, quality staff", "kind": "estimate" },
+      {
+        "label": "Approvals, spread out",
+        "perUnit": 400,
+        "basis": "NEMSA and NERC costs divided across meters made. Fees are not published.",
+        "kind": "estimate"
+      },
+      { "label": "Packing and delivery", "perUnit": 900, "basis": "Box, manual, seals, getting it to the buyer", "kind": "estimate" }
+    ],
+    "imported": [
+      {
+        "label": "The meter itself",
+        "perUnit": 27800,
+        "basis": "Chinese finished meter, about $20 at a thousand-unit order ($14.80 to $22.30), at ₦1,390/$",
+        "kind": "sourced"
+      },
+      { "label": "Freight and insurance", "perUnit": 2200, "basis": "Sea freight to Lagos", "kind": "estimate" },
+      { "label": "Import duty", "perUnit": 3000, "basis": "The standard rate on meters", "kind": "estimate" },
+      {
+        "label": "Extra levy on finished meters",
+        "perUnit": 10500,
+        "basis": "35%, charged only on meters imported ready-built. This line is the entire argument.",
+        "kind": "sourced"
+      },
+      { "label": "Port surcharges", "perUnit": 1500, "basis": "Various customs and ECOWAS charges", "kind": "estimate" },
+      { "label": "VAT", "perUnit": 3400, "basis": "7.5%, charged on everything above", "kind": "sourced" },
+      { "label": "Clearing and haulage", "perUnit": 4000, "basis": "Agent fees, port delays, truck to your warehouse", "kind": "estimate" }
+    ],
+    "verdict": "Assembling here is 36% cheaper: ₦19,100 a meter, or ₦38.2m on a batch of 2,000, and it holds all year. Meters sell for ₦133,300 to ₦150,500 on the Ikeja approved list, so the margin over your ₦33,300 cost is about ₦100,000. But the advantage rests on the 35% levy on finished imports: without it the saving falls to about ₦8,600. The line costs about ₦95m and the first saleable batch is about 20 weeks away, mostly waiting on approvals.",
+    "caveats": [
+      "The 35% levy is the whole margin. It was suspended for a year in 2020 to speed a three million meter rollout. Remove it and your saving drops from ₦19,100 to about ₦8,600.",
+      "Government keeps buying from China: a 2024 deal sent 1,437,500 smart meters to Chinese firms, and a $340,000 bid deposit on an earlier tender priced local makers out.",
+      "About 2.5 million meters have been delivered and only about 150,000 installed. Installers say the ₦3,000 fee isn't worth the trip. The shortage has moved from making meters to fitting them.",
+      "The rules punish going deeper: kit assemblers pay 5% duty with no VAT, while a full manufacturer pays duty on every component. Assemble first; mould the casing here, not the electronics.",
+      "NEMSA, NERC, SON and STS fees are not published. Ask them in writing before you budget.",
+      "Kit and equipment prices are ranges, not quotes."
+    ],
+    "references": [
+      { "label": "Single-phase meter, to the customer", "value": "₦98,900 to ₦150,500", "source": "₦133,300 to ₦150,500 on the Ikeja approved list; Mojec DIN-rail ₦98,900" },
+      { "label": "Three-phase meter", "value": "₦210,000 to ₦260,000", "source": "Nigerian market, September 2026" },
+      { "label": "Old fixed price", "value": "₦81,975 single phase", "source": "₦143,836 three phase, before deregulation" },
+      { "label": "Chinese finished meter", "value": "$14.80 to $22.30", "source": "At the factory, thousand-unit order" },
+      { "label": "Certification bundle", "value": "About $3.20 a unit", "source": "From a Chinese supplier; saves four to six months" },
+      { "label": "Levy on finished imports", "value": "35%", "source": "Assemblers: 5% duty, no VAT, reduced port charges" },
+      { "label": "Local content rule", "value": "30% of volumes", "source": "Of contracted meter volumes" },
+      { "label": "Stock needed to bid", "value": "2,000 meters", "source": "NERC requirement for MAP vendors" },
+      { "label": "Installation fee", "value": "About ₦3,000 a meter", "source": "Widely called too little" },
+      { "label": "Minimum wage", "value": "₦70,000 / month", "source": "Federal minimum wage" },
+      { "label": "Exchange rate", "value": "₦1,390 / $1", "source": "₦1,327.78 official, about ₦1,389 parallel" }
+    ],
+    "sources": []
+  },
+  "suppliers": {
+    "product": "prepaid meter",
+    "origin": "Lagos",
+    "currency": "NGN",
+    "groups": [
+      {
+        "name": "Materials",
+        "noun": "source",
+        "description": "The kit comes from China. Casings, labels and security printing can come from Nigeria, and the casing is the first part worth bringing in-house.",
+        "suppliers": [
+          {
+            "name": "Chinese meter kit suppliers",
+            "kind": "CKD and SKD parts kits",
+            "location": "Zhejiang, Guangdong and Henan, China",
+            "leadTime": "10 to 12 weeks to your bench",
+            "capabilities": ["CKD or SKD kits", "IEC 62055-31 and 62053-21 documents", "Certification bundles"],
+            "note": "Ask for kit pricing, not finished meters, and for the international test documentation up front. Kits ship out of Ningbo, Shenzhen or Wenzhou.",
+            "price": { "label": "Parts kit", "amount": 20850, "basis": "About $15 a kit at ₦1,390/$, before freight and duty" }
+          },
+          {
+            "name": "CountMe Chemicals",
+            "kind": "Plastic resin",
+            "location": "Lagos",
+            "capabilities": ["Polycarbonate resin", "ABS resin"],
+            "note": "Raw material for casings, not the finished casing.",
+            "price": { "label": "Polycarbonate or ABS", "amount": 9300, "unit": "kg", "basis": "About ₦9,300 a kilo" }
+          },
+          {
+            "name": "Nigerian injection moulders",
+            "kind": "Plastic casings",
+            "location": "Aba, Ogun and Lagos",
+            "capabilities": ["Injection moulding", "Casings and covers"],
+            "note": "Nigeria has plenty of moulding machines sitting underused. Casings are bulky to ship and cheap to mould."
+          },
+          {
+            "name": "iPrints Nigeria",
+            "kind": "Tamper-evident labels",
+            "location": "Lagos",
+            "leadTime": "3 days",
+            "capabilities": ["Tamper-evident labels", "Minimum order 1,000"],
+            "note": "Labels for seals and the NEMSA mark.",
+            "price": { "label": "Tamper-evident label", "amount": 90, "basis": "From about ₦90 each, minimum order 1,000" }
+          },
+          {
+            "name": "Cardstel Solutions",
+            "kind": "Security printing",
+            "location": "Lagos",
+            "capabilities": ["Security printing", "Holograms"],
+            "note": "Security printing and holograms for seals and packaging."
+          }
+        ]
+      },
+      {
+        "name": "Workshops",
+        "noun": "maker",
+        "description": "The established meter makers: your competition, and a guide to where a newcomer fits.",
+        "suppliers": [
+          {
+            "name": "MOJEC International",
+            "kind": "Meter manufacturer",
+            "location": "Oshodi, Lagos",
+            "capabilities": ["About 2.4 million meters a year", "Supplies 8 of 11 DisCos"],
+            "note": "The largest, with over 1.5 million meters deployed. You won't beat it on volume and shouldn't try."
+          },
+          {
+            "name": "MEMMCOL (Momas)",
+            "kind": "Meter manufacturer",
+            "location": "Mowe, Ogun State",
+            "capabilities": ["Around 100,000 a year", "Local manufacturing"],
+            "note": "The loudest voice on tariff policy; its chairman has warned about suspending the levy on finished meters."
+          },
+          {
+            "name": "Unistar Hi-Tech",
+            "kind": "Meter manufacturer",
+            "location": "Ojota, Lagos",
+            "capabilities": ["States over 1 million a year", "NEMSA and SON certified"],
+            "note": "Long-established local maker."
+          }
+        ]
+      },
+      {
+        "name": "Services",
+        "noun": "service",
+        "description": "Approvals first, then clearing, then the buyers. Five approvals run longer than the factory build.",
+        "suppliers": [
+          {
+            "name": "NEMSA",
+            "kind": "Regulator: type approval",
+            "location": "Abuja",
+            "leadTime": "Assume 3 to 4 months",
+            "capabilities": ["Meter type approval", "Accuracy and safety tests"],
+            "note": "No meter can legally be fitted without type approval. Talk to them while still choosing a platform. Fee not published."
+          },
+          {
+            "name": "NERC",
+            "kind": "Regulator: licences",
+            "location": "Abuja",
+            "capabilities": ["Meter Service Provider certificate", "MAP permit"],
+            "note": "Licenses you to assemble meters, and separately to sell and install directly. Fees not published."
+          },
+          {
+            "name": "SON",
+            "kind": "Standards body",
+            "location": "Abuja",
+            "capabilities": ["MANCAP certification"],
+            "note": "Product standard mark for goods made in Nigeria."
+          },
+          {
+            "name": "STS Association",
+            "kind": "Token standard licence",
+            "capabilities": ["Manufacturer code", "Security keys"],
+            "note": "Your own identity in the token system so tokens from any DisCo work on your meters. Recurring fees. Sort it before ordering the key station."
+          },
+          {
+            "name": "Advance Logistics Services",
+            "kind": "Clearing agent",
+            "location": "Palm Grove, Lagos",
+            "capabilities": ["Customs clearing", "Port handling"],
+            "note": "77a Shipeolu Street. Ask whether they have cleared meter kits before: the 5% assembler duty depends on correct paperwork."
+          },
+          {
+            "name": "Alov Air-Sea",
+            "kind": "Clearing agent",
+            "location": "Marsh, Lagos",
+            "capabilities": ["Customs clearing", "Sea freight"],
+            "note": "5 Adegoke Estate. Pick an agent before placing the order, not after the container lands."
+          },
+          {
+            "name": "AGL (formerly Bolloré)",
+            "kind": "Clearing and logistics",
+            "location": "Apapa, Lagos",
+            "capabilities": ["Clearing", "Electrical goods experience"],
+            "note": "Larger and more expensive, but unlikely to leave your container sitting and running up demurrage."
+          },
+          {
+            "name": "DisCos and MAP vendors",
+            "kind": "Buyers",
+            "location": "Nationwide",
+            "capabilities": ["11 DisCos", "Licensed MAP vendors", "State governments"],
+            "note": "Each MAP vendor must hold 2,000 meters to bid, and the big makers won't take an order that small. That is your opening."
+          },
+          {
+            "name": "EMMAN and MMAAN",
+            "kind": "Trade associations",
+            "location": "Nigeria",
+            "capabilities": ["Tariff policy", "Industry news"],
+            "note": "Tariff policy moves through these groups. Join one or you'll hear about changes after they've cost you."
+          }
+        ]
+      }
+    ],
+    "sources": []
+  },
+  "production": {
+    "product": "prepaid meter",
+    "batch": 2000,
+    "unit": "meter",
+    "flow": [
+      { "label": "Check the kits" },
+      { "label": "Prepare the casings" },
+      { "label": "Build it" },
+      { "label": "Load software and keys" },
+      { "label": "Calibrate", "key": true },
+      { "label": "Safety test" },
+      { "label": "Burn-in" },
+      { "label": "Seal and mark" },
+      { "label": "Pack" }
+    ],
+    "stats": [
+      { "label": "Suggested batch", "value": "2,000 meters", "note": "The stock a MAP vendor must hold to bid" },
+      { "label": "Production time", "value": "7 working days", "note": "300 meters a day on one shift" },
+      { "label": "First batch ready", "value": "20 weeks", "note": "Most of it waiting on approvals" },
+      { "label": "Batch cost and value", "value": "₦66.6m → ₦266.6m", "note": "At ₦33,300 cost and ₦133,300 price" }
+    ],
+    "materials": [
+      { "item": "Parts kits (CKD or SKD)", "quantity": "2,000" },
+      { "item": "Plastic casings", "quantity": "2,000 sets" },
+      { "item": "Tamper seals and labels", "quantity": "2,000 sets" },
+      { "item": "Boxes, manuals, warranty cards", "quantity": "2,000" },
+      { "item": "STS security keys", "quantity": "2,000" }
+    ],
+    "machines": [
+      { "item": "Calibration test bench", "source": "Buy, $18k to $40k" },
+      { "item": "Key loading station", "source": "Buy, $6k to $12k" },
+      { "item": "Safety tester", "source": "Buy, $3k to $6k" },
+      { "item": "Burn-in rack", "source": "Buy, $4k to $9k" },
+      { "item": "Assembly benches and tools", "source": "Buy, $3k to $7k" },
+      { "item": "Laser marker", "source": "Buy, $4k to $8k" },
+      { "item": "Test jigs", "source": "Buy, $2k to $5k" },
+      { "item": "Sealing and packing station", "source": "Buy, $1.5k to $3k" }
+    ],
+    "steps": [
+      {
+        "title": "Choose a platform and kit partner",
+        "when": "Weeks 1 to 4",
+        "detail": "Pick a meter platform and a Chinese kit supplier. Get the IEC 62055-31 and IEC 62053-21 test documentation up front, because NEMSA will ask for it.",
+        "who": "You"
+      },
+      {
+        "title": "Approvals",
+        "when": "Weeks 1 to 16",
+        "detail": "NEMSA type approval, NERC certification and the STS licence. Start on day one: this is the long pole and nothing ships without it.",
+        "who": "You and the regulators"
+      },
+      {
+        "title": "Equipment",
+        "when": "Weeks 4 to 12",
+        "detail": "Order the calibration bench and key station, clear them at the port, install and commission. Everything else on the list is quick.",
+        "who": "Supplier and installer"
+      },
+      {
+        "title": "Hire and train",
+        "when": "Weeks 8 to 12",
+        "detail": "Operators need a week. The technicians and supervisor need longer and should be in place before the machines arrive.",
+        "who": "You"
+      },
+      {
+        "title": "Trial build",
+        "when": "Weeks 12 to 16",
+        "detail": "Expect the first hundred meters to fail something. Far better here than in the official test.",
+        "who": "Line crew"
+      },
+      {
+        "title": "Official testing",
+        "when": "Weeks 16 to 20",
+        "detail": "Official testing, corrections and approval.",
+        "who": "NEMSA"
+      },
+      {
+        "title": "First saleable batch",
+        "when": "Week 20",
+        "detail": "Build 2,000 meters in about 7 working days: 300 a day, paced by calibration. Add bench positions to go faster.",
+        "who": "Line crew"
+      }
+    ]
+  },
+  "quotes": {
+    "product": "prepaid meter",
+    "currency": "NGN",
+    "batch": 2000,
+    "unit": "meter",
+    "brief": "2,000 single-phase STS prepaid meter kits (CKD or SKD) for assembly in Lagos, delivered to Apapa. Include IEC 62055-31 and IEC 62053-21 test documentation. Quote per kit, your minimum order, lead time, and the price of your certification bundle.",
+    "attachments": ["Production plan attached", "IEC test documents required", "Reply by 17 Oct"],
+    "recipients": [
+      { "name": "Chinese meter kit suppliers", "kind": "Parts kits", "area": "Zhejiang and Guangdong", "selected": true },
+      { "name": "Nigerian injection moulders", "kind": "Plastic casings", "area": "Aba, Ogun and Lagos", "selected": true },
+      { "name": "iPrints Nigeria", "kind": "Tamper-evident labels", "area": "Lagos", "selected": true },
+      { "name": "Advance Logistics Services", "kind": "Clearing agent", "area": "Palm Grove, Lagos", "selected": true },
+      { "name": "Alov Air-Sea", "kind": "Clearing agent", "area": "Marsh, Lagos", "selected": false }
+    ],
+    "quotes": []
+  }
+}

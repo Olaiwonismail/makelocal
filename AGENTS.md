@@ -49,6 +49,6 @@ Layout: `frontend/` is the Next.js app (Next 16, Tailwind v4 — read its own `f
 ## Open decisions (fill in as they're made)
 
 - [x] DB: SQLite. Hosting: API on Render (`render.yaml`), web app on Vercel. See `DEPLOY.md`.
-- [x] Demo region: Kano, Nigeria. Demo product: tomato paste, 70g sachet (researched data in `backend/data/demo/tomato-paste.json`, served without API keys).
+- [x] Demo products, served without API keys from `backend/data/demo/`: tomato paste, 70g sachet, made in Kano (`tomato-paste.json`), and single-phase STS prepaid electricity meters, assembled in Lagos (`prepaid-meters.json`).
 - [x] Supplier data: live Google Maps listings via Serper, plus the researched demo list.
 - [x] "Contact supplier" ships as draft-only: the user copies the brief or opens it in WhatsApp. Nothing is sent automatically.

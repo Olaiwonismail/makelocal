@@ -3,11 +3,10 @@
 from app.models import STAGES
 
 
-def test_workspace_is_seeded_with_demo_project(keyless_client):
+def test_workspace_is_seeded_with_demo_projects(keyless_client):
     cards = keyless_client.get("/projects").json()
-    assert len(cards) == 1
-    card = cards[0]
-    assert card["product"].startswith("Tomato paste")
+    assert sorted(c["product"].split(",")[0] for c in cards) == ["Prepaid electricity meter", "Tomato paste"]
+    card = next(c for c in cards if c["product"].startswith("Tomato paste"))
     assert card["stage"] == 3  # quotes in progress
     assert card["metric"] == {"label": "Saving vs import", "amount": 13.0, "currency": "NGN", "unit": "sachet",
                               "text": None}
@@ -45,3 +44,16 @@ def test_empty_product_is_rejected(keyless_client):
 def test_any_tomato_product_uses_the_research(keyless_client):
     for text in ("Tomato", "tomatoes", "Tomato paste tin"):
         assert keyless_client.post("/projects", json={"product": text}).json()["demo"] is True
+
+
+def test_prepaid_meter_project_uses_research_for_every_stage(keyless_client):
+    project = keyless_client.post("/projects", json={"product": "Prepaid electricity meters"}).json()
+    assert project["demo"] is True
+    assert project["answers"]["makeIn"] == "Lagos, Nigeria"
+    for stage in STAGES:
+        r = keyless_client.post(f"/projects/{project['id']}/stages/{stage}")
+        assert r.status_code == 200, (stage, r.text)
+    cost = keyless_client.post(f"/projects/{project['id']}/stages/cost").json()
+    local = sum(l["perUnit"] for l in cost["local"])
+    imported = sum(l["perUnit"] for l in cost["imported"])
+    assert (local, imported) == (33300, 52400)
